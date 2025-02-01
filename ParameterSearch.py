@@ -3,9 +3,8 @@
 # =======================
 def default_models(X, y):
     models = {
-        "LogisticRegression": LogisticRegression(max_iter=200),
+        "LogisticRegression": LogisticRegression(),
         "kNN": KNeighborsClassifier(n_neighbors=5),
-        "SVM": SVC(kernel='rbf', probability=True),
         "DecisionTree": DecisionTreeClassifier(),
         "RandomForest": RandomForestClassifier(),
         "CatBoost": CatBoostClassifier(),
