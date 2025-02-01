@@ -151,6 +151,7 @@ def feat_importance(model):
 
     elif 'catboost' in str(type(model)):
         feature_importance = model.get_feature_importance()
+        feature_names = model.feature_names_
         indices = np.argsort(feature_importance)[::-1][:15]
 
         plt.barh(range(len(indices)), feature_importance[indices], align='center')
@@ -162,6 +163,7 @@ def feat_importance(model):
 
     elif 'RandomForest' in str(type(model)):
         feature_importance = model.get_feature_importance()
+        feature_names = model.feature_names_
         indices = np.argsort(feature_importance)[::-1][:15]
 
         plt.barh(range(len(indices)), feature_importance[indices], align='center')
