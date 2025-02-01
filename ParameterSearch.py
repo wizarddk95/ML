@@ -102,7 +102,7 @@ def random_search(model, X, y):
     print("최적 검증세트 F1-스코어:", random_search.best_score_)
 
     # 모델 반환
-    return best_model
+    return best_model, random_search
 
 
 # =======================
