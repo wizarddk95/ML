@@ -1,4 +1,8 @@
+from scipy.stats import randint, uniform
+from sklearn.model_selection import RandomizedSearchCV
+
 def random_search(model, X, y):
+       
     if 'lightgbm' in str(type(model)):
         # =============================
         # LGBM 하이퍼 파라미터 범위 설정
