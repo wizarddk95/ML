@@ -162,7 +162,7 @@ def feat_importance(model):
         plt.show()
 
     elif 'RandomForest' in str(type(model)):
-        feature_importance = model.get_feature_importance()
+        feature_importance = model.feature_importances_
         feature_names = model.feature_names_
         indices = np.argsort(feature_importance)[::-1][:15]
 
