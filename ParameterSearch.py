@@ -137,7 +137,7 @@ def grid_search(model, param, X, y):
 # =======================
 # 특성 중요도 시각화
 # =======================
-def feat_importance(model):
+def feat_importance(model, data=None):
 
     if 'lightgbm' in str(type(model)):
         lgbm.plot_importance(best_model, max_num_features=15, importance_type='gain')  # 'split' or 'gain'
@@ -163,7 +163,7 @@ def feat_importance(model):
 
     elif 'RandomForest' in str(type(model)):
         feature_importance = model.feature_importances_
-        feature_names = model.feature_names_
+        feature_names = list(data.columns)
         indices = np.argsort(feature_importance)[::-1][:15]
 
         plt.barh(range(len(indices)), feature_importance[indices], align='center')
