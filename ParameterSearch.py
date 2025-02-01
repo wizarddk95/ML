@@ -66,7 +66,7 @@ def random_search(model, X, y):
         }
 
     elif 'RandomForest' in str(type(model)):
-        param_distributions_rf = {
+        param_distributions = {
             'n_estimators': randint(100, 1500),  # 트리 개수 (너무 크면 학습 시간 증가)
             'max_depth': randint(3, 20),  # 트리의 최대 깊이
             'min_samples_split': randint(2, 20),  # 노드 분할을 위한 최소 샘플 수
