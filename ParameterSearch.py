@@ -1,3 +1,23 @@
+# ===================
+# 기본 모델 평가
+# ===================
+def default_models(X, y):
+    models = {
+        'RandomForest': RandomForestClassifier(),
+        'LightGBM': lgbm.LGBMClassifier(verbose=-1),
+        'XGBoost': xgb.XGBClassifier()
+    }
+
+    for name, model in models.items():
+        scores = cross_validate(model, X_train, y_train, cv=5, scoring='f1', return_train_score=True)
+        print(f'\n===== {name} 분류 모델 결과 =====')
+        print("훈련 평균 f1 점수:", scores['train_score'].mean())
+        print("검증 평균 f1 점수:", scores['test_score'].mean())
+
+
+# =======================
+# 랜덤서치
+# =======================
 def random_search(model, X, y):
        
     if 'lightgbm' in str(type(model)):
@@ -56,4 +76,33 @@ def random_search(model, X, y):
     print("최적 검증세트 F1-스코어:", random_search.best_score_)
 
     #모델 반환
+    return best_model
+
+# ========================
+# 그리드 서치
+# ========================
+def grid_search(model, param, X, y):
+
+    # GridSearchCV 설정
+    grid_search = GridSearchCV(
+        model,
+        param_grid=param,
+        scoring='f1',                   # F1 스코어를 기준으로 최적화
+        cv=5,                           # 5-폴드 교차 검증
+        verbose=1,
+        n_jobs=-1                       # 병렬 처리
+    )
+
+    # 모델 학습
+    grid_search.fit(X, y)
+
+    # 최적 하이퍼파라미터 및 성능 출력
+    print("최적 하이퍼파라미터:", grid_search.best_params_)
+
+    # 최적 모델로 테스트 세트 평가
+    best_model = grid_search.best_estimator_
+    y_pred = best_model.predict(X)
+    print("\n훈련세트 F1-스코어:", f1_score(y, y_pred))
+    print("검증세트 F1-스코어:", grid_search.best_score_)
+    
     return best_model
