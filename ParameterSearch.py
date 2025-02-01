@@ -107,3 +107,20 @@ def grid_search(model, param, X, y):
     print("검증세트 F1-스코어:", grid_search.best_score_)
     
     return best_model
+    
+# =======================
+# 특성 중요도 시각화
+# =======================
+def feat_importance(model):
+
+    if 'lightgbm' in str(type(model)):
+        lgbm.plot_importance(best_model, max_num_features=15, importance_type='gain')  # 'split' or 'gain'
+        plt.title("LightGBM Feature Importance")
+        plt.show()
+
+    elif 'xgboost' in str(type(model)):
+        xgb.plot_importance(best_model, max_num_features=15, importance_type='gain')  # 'weight', 'gain', 'cover'
+        plt.title("XGBoost Feature Importance")
+        plt.show()
+
+
