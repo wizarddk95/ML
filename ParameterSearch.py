@@ -97,7 +97,7 @@ def random_search(model, X, y):
     # 최적 하이퍼파라미터 및 성능 출력
     best_model = random_search.best_estimator_
     y_pred = best_model.predict(X)
-    print("최적 하이퍼파라미터:", random_search.best_params_)
+    print("\n최적 하이퍼파라미터:", random_search.best_params_)
     print("\n훈련세트 F1-스코어:", f1_score(y, y_pred))
     print("최적 검증세트 F1-스코어:", random_search.best_score_)
 
@@ -124,7 +124,7 @@ def grid_search(model, param, X, y):
     grid_search.fit(X, y)
 
     # 최적 하이퍼파라미터 및 성능 출력
-    print("최적 하이퍼파라미터:", grid_search.best_params_)
+    print("\n최적 하이퍼파라미터:", grid_search.best_params_)
 
     # 최적 모델로 테스트 세트 평가
     best_model = grid_search.best_estimator_
