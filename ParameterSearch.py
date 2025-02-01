@@ -76,6 +76,10 @@ def random_search(model, X, y):
             'class_weight': ['balanced', 'balanced_subsample', None]  # 클래스 불균형 조정
         }
 
+    else:
+        print("지원하지 않는 모델 유형")
+        return
+
     # RandomizedSearchCV 설정
     random_search = RandomizedSearchCV(
         model,
@@ -144,5 +148,30 @@ def feat_importance(model):
         xgb.plot_importance(best_model, max_num_features=15, importance_type='gain')  # 'weight', 'gain', 'cover'
         plt.title("XGBoost Feature Importance")
         plt.show()
+
+    elif 'catboost' in str(type(model)):
+        feature_importance = model.get_feature_importance()
+        indices = np.argsort(feature_importance)[::-1][:15]
+
+        plt.barh(range(len(indices)), feature_importance[indices], aling='center')
+        plt.yticks(range(len(indices)), np.array(feature_names)[indices] if feature_names else indices)
+        plt.xlabel("Feature Importance")
+        plt.title("CatBoost Feature Importance")
+        plt.gca().invert_yaxis()
+        plt.show()
+
+    elif 'RandomForest' in str(type(model)):
+        feature_importance = model.get_feature_importance()
+        indices = np.argsort(feature_importance)[::-1][:15]
+
+        plt.barh(range(len(indices)), feature_importance[indices], align='center')
+        plt.yticks(range(len(indices)), np.array(feature_names)[indices] if feature_names else indices)
+        plt.xlabel("Feature Importance")
+        plt.title("RandomForest Feature Importance")
+        plt.gca().invert_yaxis()  # 가장 중요한 특성이 위로 가도록 정렬
+        plt.show()
+
+    else:
+        print("지원하지 않는 모델 유형")
 
 
