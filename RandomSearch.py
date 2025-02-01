@@ -1,4 +1,4 @@
-def random_search(model, parameter, X, y):
+def random_search(model, X, y):
     if 'lightgbm' in str(type(model)):
         # =============================
         # LGBM 하이퍼 파라미터 범위 설정
