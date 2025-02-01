@@ -153,7 +153,7 @@ def feat_importance(model):
         feature_importance = model.get_feature_importance()
         indices = np.argsort(feature_importance)[::-1][:15]
 
-        plt.barh(range(len(indices)), feature_importance[indices], aling='center')
+        plt.barh(range(len(indices)), feature_importance[indices], align='center')
         plt.yticks(range(len(indices)), np.array(feature_names)[indices] if feature_names else indices)
         plt.xlabel("Feature Importance")
         plt.title("CatBoost Feature Importance")
