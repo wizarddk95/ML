@@ -1,6 +1,6 @@
-# ===================
+# =======================
 # 기본 모델 평가
-# ===================
+# =======================
 def default_models(X, y):
     models = {
         'RandomForest': RandomForestClassifier(),
@@ -78,9 +78,10 @@ def random_search(model, X, y):
     #모델 반환
     return best_model
 
-# ========================
+
+# =======================
 # 그리드 서치
-# ========================
+# =======================
 def grid_search(model, param, X, y):
 
     # GridSearchCV 설정
