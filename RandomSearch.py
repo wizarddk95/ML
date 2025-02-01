@@ -1,7 +1,3 @@
-from scipy.stats import randint, uniform
-from sklearn.model_selection import RandomizedSearchCV
-from sklearn.metrics import f1_score
-
 def random_search(model, X, y):
        
     if 'lightgbm' in str(type(model)):
