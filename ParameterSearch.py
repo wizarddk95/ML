@@ -161,7 +161,7 @@ def feat_importance(model, data=None):
         plt.gca().invert_yaxis()
         plt.show()
 
-    elif 'RandomForest' in str(type(model)):
+    elif 'RandomForest' in str(type(model)) and data:
         feature_importance = model.feature_importances_
         feature_names = list(data.columns)
         indices = np.argsort(feature_importance)[::-1][:15]
