@@ -3,7 +3,12 @@
 # =======================
 def default_models(X, y):
     models = {
-        'RandomForest': RandomForestClassifier(),
+        "LogisticRegression": LogisticRegression(max_iter=200),
+        "kNN": KNeighborsClassifier(n_neighbors=5),
+        "SVM": SVC(kernel='rbf', probability=True),
+        "DecisionTree": DecisionTreeClassifier(),
+        "RandomForest": RandomForestClassifier(),
+        "CatBoost": CatBoostClassifier(),
         'LightGBM': lgbm.LGBMClassifier(verbose=-1),
         'XGBoost': xgb.XGBClassifier()
     }
