@@ -140,12 +140,12 @@ def grid_search(model, param, X, y):
 def feat_importance(model, data=None):
 
     if 'lightgbm' in str(type(model)):
-        lgbm.plot_importance(best_model, max_num_features=15, importance_type='gain')  # 'split' or 'gain'
+        lgbm.plot_importance(model, max_num_features=15, importance_type='gain')  # 'split' or 'gain'
         plt.title("LightGBM Feature Importance")
         plt.show()
 
     elif 'xgboost' in str(type(model)):
-        xgb.plot_importance(best_model, max_num_features=15, importance_type='gain')  # 'weight', 'gain', 'cover'
+        xgb.plot_importance(model, max_num_features=15, importance_type='gain')  # 'weight', 'gain', 'cover'
         plt.title("XGBoost Feature Importance")
         plt.show()
 
