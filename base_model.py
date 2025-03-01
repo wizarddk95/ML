@@ -32,7 +32,6 @@ def default_models(X, y, cv=5, scoring='accuracy'):
         "XGBoost": xgb.XGBClassifier(use_label_encoder=False, eval_metric='logloss')
     }
 
-    results = {}
     skf = StratifiedKFold(n_splits=cv, shuffle=True, random_state=42)  # ✅ StratifiedKFold 적용
 
     for name, model in models.items():
@@ -45,11 +44,3 @@ def default_models(X, y, cv=5, scoring='accuracy'):
         print(f"훈련 평균 {scoring}: {train_score_mean}")
         print(f"검증 평균 {scoring}: {test_score_mean}")
         print("====================================")
-
-        # 결과 저장
-        results[name] = {
-            f"train_{scoring}": train_score_mean,
-            f"test_{scoring}": test_score_mean
-        }
-
-    return results
