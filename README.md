@@ -5,4 +5,5 @@
 - LinearRegressionGD(learning_rate=0.1, n_iter=1000) : 경사하강법
 
 ### 2. LogisticRegression
+- LogisticRegression(learning_rate=0.1, n_iter=1000, threshold=0.5) : 경사하강법
 ### 3. 
