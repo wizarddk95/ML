@@ -27,7 +27,6 @@ class LinearRegression:
 
         return X_b.dot(self.theta)
 
-
 # 2. 경사하강법
 class LinearRegressionGD:
     def __init__(self, learning_rate=0.1, n_iter=1000):
@@ -44,19 +43,19 @@ class LinearRegressionGD:
         X_b = np.c_[X, np.ones((m, 1))]
 
         # theta 초기화 (0 또는 랜덤)
-        self.theta = np.random.randn(n + 1)
+        self.theta = np.zeros((n + 1, 1))
 
         # 경사하강법 수행
-        for _ in range(n_iter):
-            gradients = (1 / m) * X_b.T.dot(X_b.dot) # 기울기 계산
+        for _ in range(self.n_iter):
+            gradients = (1 / m) * X_b.T.dot(X_b.dot(self.theta) - y) # 기울기 계산
             self.theta -= self.learning_rate * gradients # 가중치 업데이트
-            
+
         return self
-    
+
     def predict(self, X):
         """
         학습된 모델을 사용하여 예측
         """
-        X_b = np.c[X, np.ones((X.shape[0], 1))]
-        
+        X_b = np.c_[X, np.ones((X.shape[0], 1))]
+
         return X_b.dot(self.theta)
